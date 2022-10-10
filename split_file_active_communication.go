@@ -28,9 +28,6 @@ func init() {
 }
 
 func main() {
-
-	println(shareSize)
-
 	if file == "" {
 		println("FilePath is required")
 		os.Exit(-1)
@@ -83,10 +80,10 @@ func readFile(filePath string) []string {
 
 func makeFile(fileInfo []string, numberOfSplits int, dir string, ext string) {
 	totalLines := len(fileInfo)
-	registerPerFile := (totalLines / numberOfSplits)
+	registersPerFile := (totalLines / numberOfSplits)
 	start := 0
 	startInfo := 0
-	ending := registerPerFile
+	ending := registersPerFile
 
 	for i := 1; i <= numberOfSplits; i++ {
 
@@ -122,13 +119,13 @@ func makeFile(fileInfo []string, numberOfSplits int, dir string, ext string) {
 			ending = totalLines
 		}
 
-		println("Script wrote: ", registerPerFile, " lines on the file, from: ", startInfo, " to: ", ending, "\n")
+		println("Script wrote: ", registersPerFile, " lines on the file, from: ", startInfo, " to: ", ending, "\n")
 
-		ending = start + registerPerFile
+		ending = start + registersPerFile
 
 		if i == (numberOfSplits - 1) {
 			ending = totalLines - 1
-			registerPerFile = totalLines - start
+			registersPerFile = totalLines - start
 		}
 	}
 }
